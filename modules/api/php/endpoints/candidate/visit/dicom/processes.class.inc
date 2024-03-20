@@ -179,7 +179,7 @@ class Processes extends Endpoint implements \LORIS\Middleware\ETagCalculator
             return new \LORIS\Http\Response\JSON\Forbidden();
         }
 
-        $data = json_decode($request->getBody()->__toString(), true);
+        $data        = json_decode($request->getBody()->__toString(), true);
         $processtype = $data['ProcessType'] ?? null;
         if (!in_array($processtype, ['mri_upload'])) {
             return new \LORIS\Http\Response\JSON\BadRequest(

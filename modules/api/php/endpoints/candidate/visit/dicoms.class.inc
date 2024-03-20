@@ -109,7 +109,7 @@ class Dicoms extends Endpoint implements \LORIS\Middleware\ETagCalculator
         // Delegate to sub-endpoints
         $tarname     = array_shift($pathparts);
         $subendpoint = array_shift($pathparts);
-        switch($subendpoint) {
+        switch ($subendpoint) {
         case 'processes':
             $handler = new Dicom\Processes(
                 $this->_visit,
