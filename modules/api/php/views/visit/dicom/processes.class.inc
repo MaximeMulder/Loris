@@ -44,7 +44,7 @@ class Processes
     {
         return [
             'mri_uploads' => array_map(
-                'self::_formatMRIUploads',
+                self::_formatMRIUploads(...),
                 $this->_mriuploads
             ),
         ];
