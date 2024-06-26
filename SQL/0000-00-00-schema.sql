@@ -675,7 +675,7 @@ CREATE TABLE `mri_protocol` (
   KEY `FK_mri_protocol_1` (`ScannerID`),
   CONSTRAINT `FK_mri_protocol_1` FOREIGN KEY (`ScannerID`) REFERENCES `mri_scanner` (`ID`),
   CONSTRAINT `FK_mri_protocol_2` FOREIGN KEY (`CenterID`) REFERENCES `psc` (`CenterID`),
-  CONSTRAINT `FK_mri_scan_type_1` FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type` (`ID`),
+  CONSTRAINT `FK_mri_protocol_scan_type` FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type` (`ID`),
   CONSTRAINT `FK_mri_protocol_group_ID_1` FOREIGN KEY (`MriProtocolGroupID`) REFERENCES `mri_protocol_group` (`MriProtocolGroupID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
@@ -763,7 +763,7 @@ CREATE TABLE `mri_protocol_checks` (
   `MriProtocolChecksGroupID` INT(4) UNSIGNED NOT NULL,
   PRIMARY KEY (`ID`),
   KEY (`MriScanTypeID`),
-  CONSTRAINT `FK_mri_scan_type_1`
+  CONSTRAINT `FK_mri_protocol_checks_scan_type`
     FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type` (`ID`),
   CONSTRAINT `FK_mri_protocol_checks_group_ID_1`
     FOREIGN KEY (`MriProtocolChecksGroupID`) REFERENCES `mri_protocol_checks_group` (`MriProtocolChecksGroupID`)
@@ -981,7 +981,7 @@ CREATE TABLE `mri_violations_log` (
   PRIMARY KEY (`LogID`),
   CONSTRAINT `FK_tarchive_mriViolationsLog_1`
     FOREIGN KEY (`TarchiveID`) REFERENCES `tarchive` (`TarchiveID`),
-  CONSTRAINT `FK_mri_scan_type_1`
+  CONSTRAINT `FK_mri_violations_log_scan_type`
     FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type` (`ID`),
   CONSTRAINT `FK_mri_checks_group_1`
     FOREIGN KEY (`MriProtocolChecksGroupID`) REFERENCES `mri_protocol_checks_group` (`MriProtocolChecksGroupID`)

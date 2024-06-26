@@ -14,9 +14,16 @@ ALTER TABLE `mri_protocol`
   ALTER `MriScanTypeID` DROP DEFAULT;
 
 ALTER TABLE `mri_protocol`
-  ADD CONSTRAINT `FK_mri_scan_type_1`
+  ADD CONSTRAINT `FK_mri_protocol_scan_type`
     FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type`(`ID`);
 
 ALTER TABLE `mri_violations_log`
-  ADD CONSTRAINT `FK_mri_scan_type_1`
+  ADD CONSTRAINT `FK_mri_violations_log_scan_type`
     FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type`(`ID`);
+
+-- Rename the existing constraints for consistency
+
+ALTER TABLE `mri_protocol_checks`
+  DROP FOREIGN KEY `FK_mriProtocolChecks_ScanType`,
+  ADD CONSTRAINT `FK_mri_protocol_checks_scan_type`
+    FOREIGN KEY (`MriScanTypeID`) REFERENCES `mri_scan_type` (`id`);
