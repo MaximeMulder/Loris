@@ -333,9 +333,9 @@ class ViewDetails extends \NDB_Form
     function _getProtocolNameFromID($id): string
     {
         try {
-            $query = "SELECT MriScanTypeID FROM mri_scan_type WHERE ID=:ID";
+            $query = "SELECT Scan_type FROM mri_scan_type WHERE ID=:ID";
             $array = $this->DB->pselectRow($query, ['ID' => $id]);
-            return $array['MriScanTypeID'] ?? 'Unknown';
+            return $array['Scan_type'] ?? 'Unknown';
         } catch (\LorisException $e) {
             return "Unknown";
         }
